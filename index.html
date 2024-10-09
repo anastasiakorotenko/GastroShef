@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gastro Chef</title>
+  <link rel="icon" href="images/icon.ico">
+  <link rel="icon" type="image/svg+xml" href="images/icon.svg">
+  <link rel="apple-touch-icon" href="images/icon.png">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css">
+  <style>
+    body {
+      font-family: "Montserrat";
+      background-color: #F5FAFF;
+      line-height: normal;
+    }
+
+    .container-fluid > .fon {overflow: hidden!important;}
+
+    .ff-c {font-family: "Comfortaa";}
+
+    .green-color {color: #64D370;}
+
+    @media (min-width: 769px) {
+      .form-container {
+        gap: 100px;
+        margin-top: 70px;
+      }
+      .navbar-toggler {
+        display: none;
+      }
+    }
+
+    .container-nav {gap: 20px;}
+    
+    @media (min-width: 1440px) {
+      .container-programs {
+        max-width: 1286px;
+        gap: 100px;
+      }
+      .grid-programs, .button-box {
+        max-width: 1180px;
+      }
+    }
+
+    .rounded-30 {border-radius: 30px;}
+    .gap-15 {gap: 15px;}
+    .gap-20 {gap: 20px;}
+    .mb-30 {margin-bottom: 30px;}
+    
+    .grid-programs .col:hover {color: #64D370;}
+
+    .schedule div:hover {color: #64D370;}
+
+    .grid-schedule {
+      background-color: #F5FAFF;
+      box-shadow: 0px 0px 40px 0px #5656564D;
+      padding: 35px 51px 35px 50px;
+    }
+
+    @media (max-width: 767px) {
+      .forma-custom {width: 280px;}
+      .form-container {
+        gap: 60px;
+        margin-top: 120px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .carousel-inner .carousel-item > div {
+          display: none;
+      }
+      .carousel-inner .carousel-item > div:first-child {
+          display: block;
+          width: 70%;
+      }      
+    }
+
+    .carousel-inner .carousel-item.active,
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+      display: flex;
+      justify-content: center;
+    }
+      
+    .carousel-inner .carousel-item-end.active,
+    .carousel-inner .carousel-item-next {
+      transform: translateX(25%);
+    }
+
+    .carousel-inner .carousel-item-start.active, 
+    .carousel-inner .carousel-item-prev {
+      transform: translateX(-25%);
+    }
+
+    .carousel-inner .carousel-item-end,
+    .carousel-inner .carousel-item-start { 
+    transform: translateX(0);
+    }
+
+    .modal-content {padding: 50px;}
+    
+    .is-valid-label {
+      color: #64D370;
+    }
+
+    .is-invalid-label {
+      color: #F87676;
+    }
+
+    .form-container {
+      gap: 77px;
+      margin-top: 150px;
+      margin-bottom: 150px;
+    }
+
+    footer {
+      margin-bottom: 100px;
+      box-shadow: 0px 0px 40px 0px #5656564D;
+      padding: 42px 0px;
+      background-color: #F5FAFF;
+    }
+
+    footer a.green-color:hover {color: #3f9047;}
+
+    .link-icons:hover {opacity: 70%;}
+
+    .custom-tooltip {
+      display: none;
+      position: absolute;
+      background-color: #F5FAFF;
+      border-radius: 11px;
+      padding: 10px;
+      z-index: 1000;
+      transform: translateX(-60%);
+      width: 200px;
+      box-shadow: 0px 0px 40px 0px #5656564D;
+      font-size: 12px;
+    }
+
+    .tooltip-button {
+      z-index: 1000;
+      position: fixed;
+      bottom: 2vw;
+      right: 5vw;
+      background-color: #F5FAFF;
+      border: none;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0px 0px 40px 0px #5656564D;
+    }
+
+    .custom-tooltip::after {
+      content: '';
+      position: absolute;
+      bottom: -19px;
+      left: 80%;
+      transform: translateX(-50%);
+      border-width: 10px;
+      border-style: solid;
+      border-color: #F5FAFF transparent transparent transparent;
+      /* box-shadow: 0px 0px 40px 0px #5656564D; */
+      background: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid p-0 position-relative">
+    <!-- фон -->
+    <div class="fon ellipse-main">
+      <img src="images/ellipse-main.svg" alt="ellipse" width="100%" height="100%">
+    </div>
+    <div class="fon ellipse-main hidden-fon1">
+      <img src="images/ellipse-main-hidden.svg" alt="ellipse" width="100%" height="100%">
+    </div>
+    <div class="fon ellipse-main hidden-fon2">
+      <img src="images/ellipse-main-hidden2.svg" alt="ellipse" width="100%" height="100%">
+    </div>
+    <div class="fon avocado-main">
+      <img src="images/avocado-main.svg" alt="avocado" width="100%" height="100%">
+    </div>
+    <!-- главная -->
+    <div class="container-fluid">
+      <!-- навигация -->
+      <nav class="navbar navbar-expand-lg">
+        <div class="container container-nav">
+          <a class="navbar-brand" href="#">
+            <div class="container-fluid rounded-circle logo-container">
+              <img src="images/logo.svg" alt="Logo">
+              <p class="fs-14 text-center">healthy ration</p>
+            </div>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть">
+              <img src="images/btn-close.svg" alt="close">
+            </button>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav p-0">
+                <li class="nav-item">
+                  <a class="nav-link ff-c p-0 fs-6 fw-bold" aria-current="page" href="#">Програмы питания</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link ff-c p-0 fs-6 fw-bold" aria-current="page" href="#">Бизнес-ланчи</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link ff-c p-0 fs-6 fw-bold" aria-current="page" href="#">Gastro Shop</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link ff-c p-0 fs-6 fw-bold" aria-current="page" href="#">О нас</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link ff-c p-0 fs-6 fw-bold" aria-current="page" href="#">Блог</a>
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-custom-green rounded-pill fw-bold">+38 (068) 949 - 49 -19</button>
+          </div>
+
+          <div class="collapse navbar-collapse nav-custom" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a class="nav-link fs-14" aria-current="page" href="#">Програмы питания</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fs-14" aria-current="page" href="#">Бизнес-ланчи</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fs-14" aria-current="page" href="#">Gastro Shop</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fs-14" aria-current="page" href="#">О нас</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fs-14" aria-current="page" href="#">Блог</a>
+              </li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-custom rounded-pill fs-5 fw-bold">+38 (068) 949 - 49 -19</button>
+        </div>
+      </nav>
+      <div class="d-flex flex-row">
+        <div class="d-grid grid-mini-menu">
+          <div class="row">
+            <img src="images/1.svg" alt="kkal">
+          </div>
+          <div class="row">
+            <img src="images/2.svg" alt="fish">
+          </div>
+          <div class="row">
+            <img src="images/3.png" alt="carrot">
+          </div>
+          <div class="row">
+            <img src="images/4.svg" alt="bottle">
+          </div>
+          <div class="row">
+            <img src="images/5.svg" alt="meat">
+          </div>
+          <div class="row">
+            <img src="images/6.svg" alt="table">
+          </div>
+        </div>
+        <div class="d-flex flex-column text-box">
+          <div class="fs-1 ff-c fw-bold">Detox программа – <span class="green-color">вкусное очищение</span> организма</div>
+          <div class="fs-5 mt-3">8 бутылочек <span class="fw-medium green-color">натуральных</span> смузи и фрешей.</div>
+          <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-center button-box-main mt-5">
+            <button type="button" class="btn btn-custom-green rounded-pill fs-4 fw-medium" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Заказать
+            </button>
+            <div class="d-flex flex-column">
+              <div class="fs-5">Пробный день всего:</div>
+              <span class="fs-2 fw-bold green-color">427 грн</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tooltip -->
+      <button type="button" class="tooltip-button mt-5" id="tooltipButton">
+        <img src="images/chat.svg" alt="message">
+      </button>
+      <div class="custom-tooltip" id="customTooltip">
+        <span class="green-color">Мы онлайн!</span> Консультация и -30% в чате. <span class="green-color">Без звонка!</span>
+      </div>
+    </div>
+    <!-- модальное окно -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+          <form class="was-validated" id="myForm">
+            <div class="modal-header p-0">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть">
+                <img src="images/btn-close.svg" alt="close">
+              </button>
+            </div>
+            <div class="modal-body p-0">
+              <div class="input-group d-flex flex-column mb-3">
+                <div>
+                  <label for="name" class="form-label fs-18 mb-2 ff-c" id="name-label">Имя</label>
+                  <input type="text" class="form-control is-valid w-100 rounded-pill" id="name" pattern=".{2,}" required aria-label="Username" aria-describedby="input1"/>
+                </div>
+                <div>
+                  <label for="phone" class="form-label fs-18 mb-2 ff-c" id="phone-label">Номер телефона</label>
+                  <input type="tel" class="form-control is-valid  w-100 rounded-pill" id="phone" name="phone" pattern="\d{11}" required aria-label="tel" aria-describedby="input2"/>
+                </div>
+                <div class="d-flex gap-3 align-items-center">
+                  <input type="radio" class="form-check-input" id="validationFormCheck3" name="radio-stacked" required>
+                  <label class="ff-c fs-6" for="agreement">Согласен с <a class="green-color text-decoration-none" href="#">условиями сотрудничества</a></label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer p-0">
+              <button type="submit" class="btn btn-custom-green rounded-pill fs-4 m-0 fw-medium">
+                Заказать
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- расписание -->
+    <div class="container-fluid d-flex flex-column align-items-center gap-0 p-0 container-programs position-relative">
+      <div class="d-grid gap-3 text-center rounded-30 opacity-75 grid-benefits">
+        <div class="row">
+          <div class="col-sm-2 col-6 d-flex flex-column gap-3">
+            <img src="images/eco.svg" alt="eco">
+            <div class="fs-12">Бережём природу. Эко-тара и проборы.</div>
+          </div>
+          <div class="col-sm-2 col-6 d-flex flex-column gap-3">
+            <img src="images/food.svg" alt="food">
+            <div class="fs-12">28 дней без повторения, более 300 блюд!</div>
+          </div>
+          <div class="col-sm-2 col-6 d-flex flex-column gap-3">
+            <img src="images/swap.svg" alt="swap">
+            <div class="fs-12">Бесплатно заменяем блюда и ингредиенты.</div>
+          </div>
+          <div class="col-sm-2 col-6 d-flex flex-column gap-3">
+            <img src="images/night.svg" alt="night">
+            <div class="fs-12">Готовим ночью, упаковываем и отправляем Вам!</div>
+          </div>
+          <div class="col-sm-2 col-6 d-flex flex-column gap-3">
+            <img src="images/fast.svg" alt="fast">
+            <div class="fs-12">Ежедневная удобная и бесплатная доставка с 6:00 до 10:00</div>
+          </div>
+          <div class="col-sm-2 col-6 d-flex flex-column gap-3">
+            <img src="images/time.svg" alt="time">
+            <div class="fs-12">Сохраняем Вашу энергию и до 14 часов в неделю освобождая от готовки!</div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-column">
+        <div class="d-flex justify-content-around button-box">
+          <button type="button" class="btn-tab rounded-pill ff-c fs-25 fw-bold">Программы питания</button>
+          <button type="button" class="btn-tab rounded-pill ff-c fs-25 fw-bold">Специальные программы</button>
+        </div>
+        <div class="d-grid text-center grid-programs">
+          <div class="row d-flex justify-content-between">
+            <div class="col flex-column d-flex align-items-center gap-2">
+              <div class="text-uppercase ff-c fw-bold fs-18">Express Fit</div>
+              <div class="fs-14">800 ккал</div>
+            </div>
+            <div class="col flex-column d-flex align-items-center gap-2">
+              <div class="text-uppercase ff-c fw-bold fs-18">slim</div>
+              <div class="fs-14">1000 ккал</div>
+            </div>
+            <div class="col flex-column d-flex align-items-center gap-2">
+              <div class="text-uppercase ff-c fw-bold fs-18">fitness</div>
+              <div class="col fs-14">1300 ккал</div>
+            </div>
+            <div class="col flex-column d-flex align-items-center gap-2">
+              <div class="text-uppercase ff-c fw-bold fs-18">balance</div>
+              <div class="col fs-14">1600 ккал</div>
+            </div>
+            <div class="col flex-column d-flex align-items-center gap-2">
+              <div class="text-uppercase ff-c fw-bold fs-18">balance +</div>
+              <div class="col fs-14">1800 ккал</div>
+            </div>
+            <div class="col flex-column d-flex align-items-center gap-2">
+              <div class="text-uppercase ff-c fw-bold fs-18">strong</div>
+              <div class="col fs-14">2000 ккал</div>
+            </div>
+            <div class="col flex-column d-flex align-items-center gap-2">
+              <div class="text-uppercase ff-c fw-bold fs-18">maxi fit</div>
+              <div class="col fs-14">2400 ккал</div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex flex-md-row align-items-center flex-column gap-20">
+          <div class="d-flex gap-50 align-items-center flex-column green-container">
+            <div class="d-flex flex-column rounded-30 green-box">
+              <div class="d-flex gap-3 align-items-center fs-6 fw-medium"><span class="ff-c fs-25 fw-bold text-uppercase">fitness</span>1300 ккал</div>
+              <div class="fw-medium">Программа здорового питания Express Fit. Идеально для: похудения в кратчайшие сроки, повышения энергии и сил, снижения веса при сидячем образе жизни.</div>
+            </div>
+            <div class="d-grid gap-15 fs-15 w-100 justify-content-around me-3 ms-3">
+              <div class="row">
+                <div class="col-5">Тестовый день</div>
+                <div class="col text-decoration-line-through">510 грн</div>
+                <div class="col">357 грн</div>
+              </div>
+              <div class="row">
+                <div class="col-5">1 день</div>
+                <div class="col text-decoration-line-through">510 грн</div>
+                <div class="col">510 грн</div>
+              </div>
+              <div class="row">
+                <div class="col-5">от 7 дней</div>
+                <div class="col text-decoration-line-through">510 грн</div>
+                <div class="col">490 грн</div>
+              </div>
+              <div class="row">
+                <div class="col-5">от 14 дней</div>
+                <div class="col text-decoration-line-through">510 грн</div>
+                <div class="col">470 грн</div>
+              </div>
+              <div class="row">
+                <div class="col-5">от 30 дней</div>
+                <div class="col text-decoration-line-through">510 грн</div>
+                <div class="col">445 грн</div>
+              </div>
+              <div class="row">
+                <div class="col-5">Завтрак и ужин</div>
+                <div class="col">-15%</div>
+                <div class="col">433 грн</div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-custom-green rounded-pill fs-4 fw-medium" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Заказать
+            </button>
+          </div>
+          <div class="d-flex flex-column gap-20 schedule-container">
+            <div class="d-flex rounded-pill schedule justify-content-around">
+              <div class="fs-25 ff-c fw-bold text-uppercase">пн</div>
+              <div class="fs-25 ff-c fw-bold text-uppercase">вт</div>
+              <div class="fs-25 ff-c fw-bold text-uppercase">ср</div>
+              <div class="fs-25 ff-c fw-bold text-uppercase">чт</div>
+              <div class="fs-25 ff-c fw-bold text-uppercase">пт</div>
+              <div class="fs-25 ff-c fw-bold text-uppercase">сб</div>
+              <div class="fs-25 ff-c fw-bold text-uppercase">вс</div>
+            </div>
+            <div class="d-grid gap-50 rounded-30 grid-schedule">
+              <div class="row">
+                <div class="col-3">
+                  <div class="fs-5 mb-1">Завтрак</div>
+                  <div class="fs-18 fw-light">7:00 - 9:00</div>
+                </div>
+                <div class="col fs-18 fw-light">- Фриттата с сыром и кабачками</div>
+                <div class="col-2 fs-18 fw-light tel-hidden">170гр</div>
+              </div>
+              <div class="row">
+                <div class="col-3 fs-18 fw-light">
+                  <div class="fs-5 mb-1">2-й завтрак</div>
+                  <div class="fs-18 fw-light">10:00 - 12:00</div>
+                </div>
+                <div class="col fs-18 fw-light">
+                  <div>- Фермерский йогурт</div>
+                  <div>- Полезное печенье из сухофруктов и орехов</div>
+                </div>
+                <div class="col-2 fs-18 fw-light tel-hidden">
+                  <div>200гр</div>
+                  <div>2 шт</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <div class="fs-5 mb-1">Обед</div>
+                  <div class="fs-18 fw-light">13:00 - 15:00</div>
+                </div>
+                <div class="col fs-18 fw-light">
+                  <div>- Люля-кебаб из индейки</div>
+                  <div>- Летний салат с маслинами и сыром</div>
+                </div>
+                <div class="col-2 fs-18 fw-light tel-hidden">100гр 100гр</div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <div class="fs-5 mb-1">Полдник</div>
+                  <div class="fs-18 fw-light">16:00 - 17:30</div>
+                </div>
+                <div class="col fs-18 fw-light">- Творожное суфле с какао и вишей</div>
+                <div class="col-2 fs-18 fw-light tel-hidden">100гр</div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <div class="fs-5 mb-1">Ужин</div>
+                  <div class="fs-18 fw-light">19:00 - 20:00</div>
+                </div>
+                <div class="col fs-18 fw-light">
+                  <div>- Рыбный терен</div>
+                  <div>- Овощи гриль</div>
+                </div>
+                <div class="col-2 fs-18 fw-light tel-hidden">100гр 150гр</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- слайдер -->
+    <div class="container-fluid d-flex flex-column align-items-center gap-50">
+      <div class="ff-c fw-bold fs-30 text-center">Фото блюд</div>
+      <div id="recipeCarousel" class="carousel d-flex gap-3 w-100 justify-content-center slide">
+        <button class="carousel-control-prev" type="button" data-bs-target="#recipeCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon d-flex justify-content-center align-items-center rounded-circle" aria-hidden="true">
+            <img src="images/arrowleft.svg" alt="" width="12.5px" height="25px">
+          </span>
+        </button>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="col-lg-3">
+              <div class="card">
+                <div class="card-img d-flex  text-center">
+                  <img src="images/slider1.svg" class="img-fluid" alt="slider1">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="col-lg-3">
+              <div class="card">
+                <div class="card-img text-center">
+                  <img src="images/slider2.svg" class="img-fluid" alt="slider2">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="col-lg-3">
+              <div class="card">
+                <div class="card-img text-center">
+                  <img src="images/slider3.svg" class="img-fluid" alt="slider3">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="col-lg-3">
+              <div class="card">
+                <div class="card-img text-center">
+                  <img src="images/slider4.svg" class="img-fluid" alt="slider4">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="col-lg-3">
+              <div class="card">
+                <div class="card-img text-center">
+                  <img src="images/slider5.svg" class="img-fluid" alt="slider5">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="col-lg-3">
+              <div class="card">
+                <div class="card-img text-center">
+                  <img src="images/slider6.svg" class="img-fluid" alt="slider6">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-next" type="button" data-bs-target="#recipeCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon d-flex justify-content-center align-items-center rounded-circle" aria-hidden="true">
+            <img src="images/arrowright.svg" alt="" width="12.5px" height="25px">
+          </span>
+        </button>
+      </div>
+    </div>
+    <!-- форма + аккордеон -->
+    <div class="container d-flex form-container flex-md-row flex-column">
+      <form class="was-validated d-flex flex-column forma-custom" id="myForm2">
+        <div class="d-flex flex-column align-items-center gap-2">
+          <div class="ff-c fw-bold fs-30">Оформить заказ</div>
+          <div class="fs-6 text-center mb-30">Обсудите все детали заказа по телефону или сами укажите все подробности онлайн</div>
+        </div>
+        <div class="input-group d-flex flex-column mb-5">
+          <div>
+            <label for="name2" class="form-label fs-18 mb-2 ff-c" id="name-label2">Имя</label>
+            <input type="text" class="form-control is-valid w-100 rounded-pill" id="name2" pattern=".{2,}" required aria-label="Username" aria-describedby="input1"/>
+          </div>
+          <div>
+            <label for="phone2" class="form-label fs-18 mb-2 ff-c" id="phone-label2">Номер телефона</label>
+            <input type="tel" class="form-control is-valid w-100 rounded-pill" id="phone2" name="phone" pattern="\d{11}" required aria-label="tel" aria-describedby="input2"/>
+          </div>
+          <div class="d-flex gap-3 flex-column">
+            <div class="d-flex gap-20 align-items-center">
+              <input type="checkbox" class="form-check-input" id="validationFormCheck4" name="radio-stacked" checked>
+              <label class="ff-c fs-6 fw-bold" for="agreement">Тест-день! Получить скидку -30%?</label>
+            </div>
+            <div class="d-flex gap-20 align-items-center">
+              <input type="checkbox" class="form-check-input" id="validationFormCheck3" name="radio-stacked" required>
+              <label class="ff-c fs-6 fw-bold" for="agreement">Согласен с <a class="text-decoration-none green-color" href="#">условиями сотрудничества</a></label>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex flex-column gap-15 align-items-center justify-content-center">
+          <button type="submit" class="btn-custom-imposter ff-c rounded-pill d-inline-block fs-5 m-0 fw-medium">
+            Заказ по телефону
+          </button>
+          <div class="ff-c fs-5 text-uppercase">или</div>
+          <button type="reset" class="btn btn-custom-green rounded-pill fs-5 m-0 fw-medium">
+            Онлайн-заказ
+          </button>
+        </div>
+      </form>
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="ff-c fw-bold fs-30 mb-30 text-center">Часто задаваемые вопросы</div>
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Как осуществляется доставка правильного питания?
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body mt-2">
+              Доставка рационов здорового питания осуществляется ежедневно с 6.00 до 10.00 в выбранный Вами часовой диапазон . Время ожидания курьера по адресу составляет 10 мин. Далее курьер едет на следующий адрес. Если Вас не было по адресу или Вы не вышли на связь, пакет повторно может быть доставлен к Вам на такси за Ваш счет или будет списан.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Можно ли менять время доставки/место?
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body mt-2">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed, dolorem!
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Как и в чем приезжает еда?
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body mt-2">
+              Lorem ipsum dolor sit amet.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Когда Вы готовите?
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFocollapseFour" data-bs-parent="#accordionExample">
+            <div class="accordion-body mt-2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quam itaque saepe necessitatibus laboriosam, dolores deleniti veniam inventore?
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header" id="headingFive">
+            <button class="accordion-button collapsed rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              Какие продукты Вы используете?
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFcollapseFive" data-bs-parent="#accordionExample">
+            <div class="accordion-body mt-2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet aliquid laborum nobis deleniti odio perferendis sapiente quaerat in praesentium incidunt similique quam, provident, culpa quasi.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header" id="headingSix">
+            <button class="accordion-button collapsed rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              Я буду есть одно и то же?
+            </button>
+          </h2>
+          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingScollapseSix" data-bs-parent="#accordionExample">
+            <div class="accordion-body mt-2">
+              Lorem ipsum dolor sit amet consectetur.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header" id="headingSeven">
+            <button class="accordion-button collapsed rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+              У меня аллергия и непереносимость определенных продуктов
+            </button>
+          </h2>
+          <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingScollapseSeven" data-bs-parent="#accordionExample">
+            <div class="accordion-body mt-2">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt vitae sint iste eveniet rerum beatae, iure vel consequatur qui.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header" id="headingEight">
+            <button class="accordion-button collapsed rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+              В какой очередности все есть?
+            </button>
+          </h2>
+          <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEcollapseEight" data-bs-parent="#accordionExample">
+            <div class="accordion-body mt-2">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto maxime dolore, voluptatem vitae illum est doloremque facilis adipisci ea sint officiis, incidunt dignissimos aut vero.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header" id="headingNine">
+            <button class="accordion-button collapsed rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+              Можно ли замораживать программу?
+            </button>
+          </h2>
+          <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
+            <div class="accordion-body mt-2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta?
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="container-fluid d-flex flex-sm-row align-items-center flex-column ms-0 me-0 justify-content-around">
+      <div class="d-flex flex-column tel-hidden">
+        <a href="#" class="mb-3 fw-bold fs-20 ff-c nav-link">Програмы питания</a>
+        <a href="#" class="mb-3 fw-bold fs-20 ff-c nav-link">О нас</a>
+        <a href="#" class="mb-3 fw-bold fs-20 ff-c nav-link">Бизнес-ланчи</a>
+        <a href="#" class="mb-3 fw-bold fs-20 ff-c nav-link">Gastro Shop</a>
+        <a href="#" class="ff-c fw-bold fs-20 nav-link">Блог</a>
+      </div>
+      <div class="d-flex flex-column align-items-center">
+        <a class="navbar-brand" href="#">
+          <div class="container-fluid">
+            <img src="images/logo.svg" alt="Logo">
+            <p class="fs-20 text-center ff-c">сервис здорового питания</p>
+          </div>
+        </a>
+      </div>
+      <div class="d-flex flex-column align-items-end">
+        <a href="#" class="fw-bold ff-c fs-20 mb-3 nav-link tel-hidden">Условия сотрудничества</a>
+        <a href="#" class="fw-bold ff-c fs-20 mb-3 nav-link tel-hidden">FAQ</a>
+        <div class="mb-3 d-flex gap-2">
+          <a href="#" class="text-decoration-none link-icons">
+            <img src="images/inst.svg" alt="inst">
+          </a>
+          <a href="#" class="text-decoration-none link-icons">
+            <img src="images/fb.svg" alt="facebook">
+          </a>
+          <a href="#" class="text-decoration-none link-icons">
+            <img src="images/wp.svg" alt="whatsapp">
+          </a>
+          <a href="#" class="text-decoration-none link-icons">
+            <img src="images/tg.svg" alt="telegram">
+          </a>
+        </div>
+        <a href="#" class="nav-link green-color fw-bold fs-20">+38 (068) 949 - 49 - 19</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const nameInput = document.getElementById('name');
+      const phoneInput = document.getElementById('phone');
+      const nameLabel = document.getElementById('name-label');
+      const phoneLabel = document.getElementById('phone-label');
+      const nameInput2 = document.getElementById('name2');
+      const phoneInput2 = document.getElementById('phone2');
+      const nameLabel2 = document.getElementById('name-label2');
+      const phoneLabel2 = document.getElementById('phone-label2');
+      const form = document.getElementById('myForm');
+      const form2 = document.getElementById('myForm2');
+
+      // Функция проверки валидности полей
+      function validateInput(input, label) {
+          if (input.checkValidity()) {
+              label.classList.add('is-valid-label');
+              label.classList.remove('is-invalid-label');
+          } else {
+              label.classList.add('is-invalid-label');
+              label.classList.remove('is-valid-label');
+          }
+      };
+
+      // Добавляем обработчики событий для валидации на ходу
+      nameInput.addEventListener('input', function () {
+        validateInput(nameInput, nameLabel);
+      });
+
+      phoneInput.addEventListener('input', function () {
+        validateInput(phoneInput, phoneLabel);
+      });
+
+      nameInput2.addEventListener('input', function () {
+        validateInput(nameInput2, nameLabel2);
+      });
+
+      phoneInput2.addEventListener('input', function () {
+        validateInput(phoneInput2, phoneLabel2);
+      });
+
+      // Удаляем классы валидации у меток
+      form.addEventListener('reset', function () {
+        nameLabel.classList.remove('is-valid-label', 'is-invalid-label');
+        phoneLabel.classList.remove('is-valid-label', 'is-invalid-label');
+      });
+
+      form2.addEventListener('reset', function() {
+        nameLabel2.classList.remove('is-valid-label', 'is-invalid-label');
+        phoneLabel2.classList.remove('is-valid-label', 'is-invalid-label');
+      });
+    });
+
+    // Очищаем форму1 при закрытии модального окна
+    document.getElementById('exampleModal').addEventListener('hidden.bs.modal', function () {
+      document.getElementById('myForm').reset();
+    });
+
+    // слайдер
+    let items = document.querySelectorAll('.carousel .carousel-item');
+
+    items.forEach((el) => {
+      const minPerSlide = 4;
+      let next = el.nextElementSibling;
+      for (var i=1; i<minPerSlide; i++) {
+        if (!next) {
+            // wrap carousel by using first child
+          next = items[0];
+        }
+        let cloneChild = next.cloneNode(true);
+        el.appendChild(cloneChild.children[0]);
+        next = next.nextElementSibling;
+      }
+    });
+
+    // Получаем элементы из DOM
+    const tooltipButton = document.getElementById('tooltipButton'); // Кнопка, на которую будем навивать
+    const customTooltip = document.getElementById('customTooltip'); // Всплывающее окно
+
+    // Добавляем обработчик события на наведение мыши
+    tooltipButton.addEventListener('mouseenter', function() {
+      // Получаем размеры и положение кнопки
+      const rect = tooltipButton.getBoundingClientRect();
+        
+      // Позиционируем подсказку
+      customTooltip.style.display = 'block'; // Показываем подсказку
+      customTooltip.style.left = `${rect.left + window.scrollX}px`; // Позиционируем по оси X
+      customTooltip.style.top = `${rect.top + window.scrollY - customTooltip.offsetHeight -10}px`; // Позиционируем по оси Y (выше кнопки)
+    });
+
+    // Добавляем обработчик события на выход мыши
+    tooltipButton.addEventListener('mouseleave', function() {
+      customTooltip.style.display = 'none'; // Скрываем подсказку
+    });
+  </script>
+</body>
+</html>
