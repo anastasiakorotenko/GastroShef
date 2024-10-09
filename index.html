@@ -186,6 +186,17 @@
       height: 26px; width: 26px;
       cursor: pointer;
     }
+    .form-check-input:checked[type=radio], .form-check-input:checked[type=checkbox] {
+      background-image: url("images/radio-valid.svg");
+    }
+    .was-validated .form-control:valid, .form-control.is-valid {
+      border-color: var(--bs-form-valid-border-color);
+      padding-right: calc(1.5em + 0.75rem);
+      background-image: url("images/valid.svg");
+      background-repeat: no-repeat;
+      background-position: right calc(0.375em + 0.1875rem) center;
+      background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    }
   </style>
 </head>
 <body>
