@@ -210,6 +210,21 @@
       background-position: center;
       background-size: 100%;
     }
+    .accordion-button::after {
+      flex-shrink: 0;
+      width: var(--bs-accordion-btn-icon-width);
+      height: var(--bs-accordion-btn-icon-width);
+      margin-left: auto;
+      content: "";
+      background-image: url("images/defolt-icon.svg");
+      background-repeat: no-repeat;
+      background-size: var(--bs-accordion-btn-icon-width);
+      transition: var(--bs-accordion-btn-icon-transition);
+    }
+    .accordion-button:not(.collapsed)::after {
+      background-image: url("images/active-icon.svg");
+      transform: var(--bs-accordion-btn-icon-transform);
+    }
   </style>
 </head>
 <body>
